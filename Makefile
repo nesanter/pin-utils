@@ -15,7 +15,7 @@
 # You should have received a copy of the GNU General Public License
 # along with pin-utils.  If not, see <https://www.gnu.org/licenses/>.
 
-CFLAGS=-Wall -Werror -fsanitize=address,undefined
+ALLFLAGS=-Wall -Werror -fsanitize=address,undefined
 TABLE=t9_table.c
 
 T9ODEFS=
@@ -25,15 +25,22 @@ T9PASSDEFS=-DPASSMODE=1 -DTTYTEST=3 -DTTYREQUIRE=1
 all: t9 t9o t9pass
 
 t9: t9.c $(TABLE)
-	$(CC) -o $@ $(CFLAGS) $^ -Os
+	$(CC) -o $@ $(CFLAGS) $(ALLFLAGS) $(LDFLAGS) $^ -Os
 
 t9o: t9o.c $(TABLE)
-	$(CC) -o $@ $(CFLAGS) $^ -Og -g $(T9ODEFS)
+	$(CC) -o $@ $(CFLAGS) $(ALLFLAGS) $(LDFLAGS) $^ $(T9ODEFS)
 
 t9pass: t9o.c $(TABLE)
-	$(CC) -o $@ $(CFLAGS) $^ -Os $(T9PASSDEFS)
+	$(CC) -o $@ $(CFLAGS) $(ALLFLAGS) $(LDFLAGS) $^ $(T9PASSDEFS)
 
 .PHONY: clean
 clean:
 	rm -fv t9 t9o t9pass
+
+.PHONY: install
+install: all
+	install -d $(DESTDIR)$(PREFIX)/usr/bin/
+	install t9 $(DESTDIR)$(PREFIX)/usr/bin/
+	install t9o $(DESTDIR)$(PREFIX)/usr/bin/
+	install t9pass $(DESTDIR)$(PREFIX)/usr/bin/
 
