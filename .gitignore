@@ -1,0 +1,13 @@
+# Generated binaries
+/t9
+/t9o
+/t9pass
+
+# Generated archives
+/*.zip
+/*.tar
+/*.tar.*
+
+# Honor .ignore
+*.ignore
+*.ignore.*
