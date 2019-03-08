@@ -18,6 +18,8 @@ build() {
 
 package() {
 	cd "$pkgname-$pkgver"
-	make DESTDIR="$pkgdir/" install-local
+	#make DESTDIR="$pkgdir/" install-local
+        install -d "$pkgdir/usr/local/bin"
+        install t9{,o,pass} "$pkgdir/usr/local/bin"
 }
 
