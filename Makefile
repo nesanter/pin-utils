@@ -37,10 +37,16 @@ t9pass: t9o.c $(TABLE)
 clean:
 	rm -fv t9 t9o t9pass
 
-.PHONY: install
+.PHONY: install install-local
 install: all
 	install -d $(DESTDIR)$(PREFIX)/usr/bin/
 	install t9 $(DESTDIR)$(PREFIX)/usr/bin/
 	install t9o $(DESTDIR)$(PREFIX)/usr/bin/
 	install t9pass $(DESTDIR)$(PREFIX)/usr/bin/
+
+install-local: all
+	install -d $(DESTDIR)$(PREFIX)/usr/local/bin/
+	install t9 $(DESTDIR)$(PREFIX)/usr/local/bin/
+	install t9o $(DESTDIR)$(PREFIX)/usr/local/bin/
+	install t9pass $(DESTDIR)$(PREFIX)/usr/local/bin/
 
