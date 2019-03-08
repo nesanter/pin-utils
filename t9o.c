@@ -61,7 +61,7 @@ static void emit(size_t x)
     if (isatty(1)) {
         int n = snprintf(NULL, 0, "%zu", x);
         char * s = malloc(n + 1);
-        snprintf(s, n + 1, "%lu", x);
+        snprintf(s, n + 1, "%zu", x);
 
         n += n % 2;
         for (int i = 0; i < n; i += 2) {
