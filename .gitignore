@@ -3,10 +3,8 @@
 /t9o
 /t9pass
 
-# Generated archives
-/*.zip
-/*.tar
-/*.tar.*
+# Generated packages
+*.pkg.tar*
 
 # Honor .ignore
 *.ignore
