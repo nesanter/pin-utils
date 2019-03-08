@@ -1,6 +1,6 @@
 # Maintainer: Noah Santer <personal@mail.mossy-tech.com>
 pkgname=pin-utils
-pkgver=0.1.3
+pkgver=master
 pkgrel=1
 pkgdesc="Use E.161 (t9) to inspire and remember PINs"
 arch=('x86_64')
