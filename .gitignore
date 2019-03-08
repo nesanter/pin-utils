@@ -2,6 +2,7 @@
 /t9
 /t9o
 /t9pass
+/*.exe
 
 # Generated packages
 *.pkg.tar*
