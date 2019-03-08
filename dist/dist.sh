@@ -1,14 +1,22 @@
 #!/bin/bash
 
-rm -rfv build.ignore
-mkdir build.ignore
+mkdir -p build.ignore
 cd build.ignore
-cp -v ../PKGBUILD .
+
+[ -f LOG ] && cp LOG LOG.prev
+[ -f FILES ] && cp FILES FILES.prev
+
+cp ../PKGBUILD .
 
 [ "$1" ] && sed -i 's/pkgver=.*/pkgver='"$1"'/' PKGBUILD
 
-updpkgsums PKGBUILD && \
-    makepkg -Ccf && \
-    bsdtar -tvf *.pkg.* && \
-    cp *.pkg.* ..
+echo "Building version $(sed -n 's/pkgver=\(.*\)/\1/p' PKGBUILD)"
+
+{ updpkgsums PKGBUILD && makepkg -Ccf ; } \
+    &>LOG || \
+    { echo 'Failed, check LOG' >&2 ; exit 1 ; }
+bsdtar -tvf *.pkg.* | grep -v '\.[A-Z]\+' >FILES
+[ -f FILES.prev ] && diff FILES FILES.prev
+ls *.pkg.*
+cp *.pkg.* ..
 
