@@ -1,0 +1,23 @@
+# Maintainer: Noah Santer <personal@mail.mossy-tech.com>
+pkgname=pin-utils
+pkgver=0.1.3
+pkgrel=1
+pkgdesc="Use E.161 (t9) to inspire and remember PINs"
+arch=('x86_64')
+url="https://github.com/nesanter/pin-utils"
+license=('GPL3')
+groups=('mossy-tech')
+depends=('gcc-libs')
+source=(https://github.com/nesanter/$pkgname/archive/$pkgver.tar.gz)
+md5sums=('f4f5d23eed89ea339c56d2ccecc11e13')
+
+build() {
+	cd "$pkgname-$pkgver"
+	make
+}
+
+package() {
+	cd "$pkgname-$pkgver"
+	make DESTDIR="$pkgdir/" install-local
+}
+
