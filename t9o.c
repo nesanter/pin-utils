@@ -16,6 +16,10 @@
  * along with pin-utils.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+#ifdef __MINGW64__
+#define __USE_MINGW_ANSI_STDIO 1
+#endif
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <unistd.h>

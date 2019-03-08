@@ -16,12 +16,31 @@
 # along with pin-utils.  If not, see <https://www.gnu.org/licenses/>.
 
 #### OPTIONS ####
+## detect Windows build
+ifeq ($(origin MINGW), undefined)
+	ifeq ($(OS),Windows_NT)
+		MINGW = 1
+	else
+		MINGW = 0
+	endif
+endif
+
 ### defaults ###
+## Windows overrides
+ifneq ($(MINGW),0)
+	# no asan/usan
+	NSANITIZE ?= 1
+	# no termios.h
+	PASSMODE ?= 0
+endif
+
+## Generic
+PASSMODE ?= 1
 NSANITIZE ?= 0
 NDEBUG ?= 0
 T9FLAGS ?=
-T9OFLAGS ?= -DPASSMODE=1 -DWERROR=1
-T9PASSFLAGS ?= -DPASSMODE=1 -DWERROR=1 -DTTYTEST=1 -DTTYREQUIRE=3
+T9OFLAGS ?= -DPASSMODE=$(PASSMODE) -DWERROR=1
+T9PASSFLAGS ?= -DPASSMODE=$(PASSMODE) -DWERROR=1 -DTTYTEST=1 -DTTYREQUIRE=3
 #---------------#
 
 ## aggregate (for flags check)
