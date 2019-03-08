@@ -7,19 +7,19 @@ arch=('x86_64')
 url="https://github.com/nesanter/pin-utils"
 license=('GPL3')
 groups=('mossy-tech')
-depends=('gcc-libs')
+depends=('mingw-w64-gcc-base')
 source=("$pkgname-$pkgver.tar.gz::https://github.com/nesanter/$pkgname/archive/$pkgver.tar.gz")
 md5sums=()
 
 build() {
 	cd "$pkgname-$pkgver"
-	make
+	CC=x86_64-w64-mingw32-cc LDFLAGS= make MINGW=1
 }
 
 package() {
 	cd "$pkgname-$pkgver"
 	#make DESTDIR="$pkgdir/" install-local
         install -d "$pkgdir/usr/local/bin"
-        install t9{,o,pass} "$pkgdir/usr/local/bin"
+        install t9{,o,pass}.exe "$pkgdir/usr/local/bin"
 }
 

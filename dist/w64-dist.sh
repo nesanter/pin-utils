@@ -1,8 +1,8 @@
 #!/bin/bash
 
 VERSION=$1
-PKGBUILD=PKGBUILD
-BUILDDIR=build.ignore
+PKGBUILD=PKGBUILD.w64
+BUILDDIR=w64-build.ignore
 
 [ -d $BUILDDIR ] && rm -r $BUILDDIR
 mkdir -p $BUILDDIR
@@ -21,5 +21,5 @@ echo -e "[32mbuilt[0m.\nContents:"
 bsdtar -tf *.pkg.* | sed -n '/\.[A-Z]/d;s/\(.*\)/\t\1/p'
 #grep -v '\.[A-Z]\+'
 PKG=$(ls *.pkg.*)
-cp $PKG ../$PKG
+cp $PKG ../w64-$PKG
 echo -e "\nPackaged [34;1m$PKG[0m"
