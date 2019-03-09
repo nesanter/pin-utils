@@ -1,4 +1,4 @@
-/* Copyright © 2019 Noah Santer <ncwbbzp9@protonmail.com>
+/* Copyright © 2019 Noah Santer <personal@mail.mossy-tech.com>
  *
  * This file is part of pin-utils.
  * 
