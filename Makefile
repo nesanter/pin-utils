@@ -107,7 +107,7 @@ mkflags:
 
 .PHONY: clean
 clean:
-	rm -fv $(ALLBINS)
+	rm -fv $(ALLBINS) flags.ignore
 
 # .PHONY: install install-local
 # install: all
