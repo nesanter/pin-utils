@@ -153,19 +153,21 @@ int main(int argc, char ** argv)
     for (size_t i = 0, line = 1; ; i += 3) {
         int c;
 
-        while ((c = getchar()) == EOF || c == '\n') {
-            if (i > 0) {
-                emit(x);
-                x = 0;
-                i = 0;
-            }
+        do {
+            while ((c = getchar()) == EOF || c == '\n') {
+                if (i > 0) {
+                    emit(x);
+                    x = 0;
+                    i = 0;
+                }
 
             if (c == EOF) {
                 return 0;
             }
 
-            line++;
-        }
+                line++;
+            }
+        } while ((t = lookup(c)) == 0);
 
 #if WERROR
 #define INVALIDSTR "Error"
@@ -181,7 +183,7 @@ int main(int argc, char ** argv)
             i %= bits;
         }
 
-        t = lookup(c);
+        //t = lookup(c) + i;
 
         if (t < 2) {
             fprintf(stderr, INVALIDSTR ": invalid input at %zu (line %zu): '%c' (x%x)\n", i / 3, line, isprint(c) ? c : '\0', c);
