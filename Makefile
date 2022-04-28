@@ -17,6 +17,7 @@
 
 #### OPTIONS ####
 ## detect Windows build
+SHELL=/bin/bash
 ifeq ($(origin MINGW), undefined)
 	ifeq ($(OS),Windows_NT)
 		MINGW = 1
