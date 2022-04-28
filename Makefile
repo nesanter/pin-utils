@@ -17,7 +17,6 @@
 
 #### OPTIONS ####
 ## detect Windows build
-SHELL=/bin/bash
 ifeq ($(origin MINGW), undefined)
 	ifeq ($(OS),Windows_NT)
 		MINGW = 1
@@ -36,6 +35,7 @@ ifneq ($(MINGW),0)
 endif
 
 ## Generic
+SHELL=/bin/bash
 PASSMODE ?= 1
 NSANITIZE ?= 0
 NDEBUG ?= 0
