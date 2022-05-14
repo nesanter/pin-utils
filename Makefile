@@ -35,6 +35,7 @@ ifneq ($(MINGW),0)
 endif
 
 ## Generic
+SHELL=/bin/bash
 PASSMODE ?= 1
 NSANITIZE ?= 0
 NDEBUG ?= 0
