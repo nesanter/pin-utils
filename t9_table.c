@@ -32,7 +32,7 @@
  * More formally, the layout follows the ITU-T recommendation
  * known as E.161 (see also ISO 9564-1:2011)
  */
-unsigned t9[CHARMAX] =
+static unsigned t9[CHARMAX] =
 {
     ['a'] = 2,
     ['b'] = 2,
