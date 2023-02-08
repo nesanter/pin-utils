@@ -58,8 +58,6 @@
 #define TTYREQUIRE 3
 #endif
 
-extern size_t t9[CHARMAX];
-
 static void emit(size_t x)
 {
     if (isatty(1)) {

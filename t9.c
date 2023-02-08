@@ -20,8 +20,6 @@
 
 #include "t9_table.h"
 
-extern size_t t9[CHARMAX];
-
 int main(int argc, char ** argv)
 {
     int err = 0;
