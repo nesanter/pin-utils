@@ -35,6 +35,6 @@
 #endif
 #endif
 
-size_t lookup(int c);
+unsigned lookup(int c);
 
 #endif /* T9_TABLE_H */
