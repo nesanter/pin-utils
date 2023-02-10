@@ -32,7 +32,7 @@
  * More formally, the layout follows the ITU-T recommendation
  * known as E.161 (see also ISO 9564-1:2011)
  */
-static unsigned t9[CHARMAX] =
+static const unsigned t9[CHARMAX] =
 {
     ['a'] = 2,
     ['b'] = 2,
@@ -67,13 +67,44 @@ static unsigned t9[CHARMAX] =
     ['x'] = 9,
     ['y'] = 9,
     ['z'] = 9
+
+    ['A'] = 2,
+    ['B'] = 2,
+    ['C'] = 2,
+
+    ['D'] = 3,
+    ['E'] = 3,
+    ['F'] = 3,
+
+    ['G'] = 4,
+    ['H'] = 4,
+    ['I'] = 4,
+
+    ['J'] = 5,
+    ['K'] = 5,
+    ['L'] = 5,
+
+    ['M'] = 6,
+    ['N'] = 6,
+    ['O'] = 6,
+
+    ['P'] = 7,
+    ['Q'] = 7,
+    ['R'] = 7,
+    ['S'] = 7,
+
+    ['T'] = 8,
+    ['U'] = 8,
+    ['V'] = 8,
+
+    ['W'] = 9,
+    ['X'] = 9,
+    ['Y'] = 9,
+    ['Z'] = 9
 };
 
-size_t lookup(int c)
+unsigned lookup(int c)
 {
-#if UPPER_TO_LOWER
-    c = tolower(c);
-#endif
     if (c >= CHARMAX) {
         return 1;
     }
