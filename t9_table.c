@@ -66,7 +66,7 @@ static const unsigned t9[CHARMAX] =
     ['w'] = 9,
     ['x'] = 9,
     ['y'] = 9,
-    ['z'] = 9
+    ['z'] = 9,
 
     ['A'] = 2,
     ['B'] = 2,
