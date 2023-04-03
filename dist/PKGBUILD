@@ -9,7 +9,7 @@ license=('GPL3')
 groups=('mossy-tech')
 depends=('gcc-libs')
 source=("$pkgname-$pkgver.tar.gz::https://github.com/nesanter/$pkgname/archive/$pkgver.tar.gz")
-sha256sums=('29507f42f973223e1395206121b5a9c3fe16c0d75063ee469487b94054b20c9d')
+sha256sums=('417f4806615a5f49fe65a6323885e272fe67fccced8dc0facd1a790723022fde')
 
 build() {
 	cd "$pkgname-$pkgver"
