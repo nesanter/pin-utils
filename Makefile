@@ -37,11 +37,11 @@ endif
 ## Generic
 SHELL=/bin/bash
 PASSMODE ?= 1
-NSANITIZE ?= 0
 NDEBUG ?= 0
 T9FLAGS ?=
 T9OFLAGS ?= -DPASSMODE=$(PASSMODE) -DWERROR=1
 T9PASSFLAGS ?= -DPASSMODE=$(PASSMODE) -DWERROR=1 -DTTYTEST=1 -DTTYREQUIRE=3
+DESTDIR ?= /usr/local
 #---------------#
 
 ## aggregate (for flags check)
@@ -55,17 +55,19 @@ CHECKFLAGS += T9OFLAGS='$(strip $(T9OFLAGS))'
 CHECKFLAGS += T9PASSFLAGS='$(strip $(T9PASSFLAGS))'
 
 ## process options
+ALLFLAGS = -Wall
+ifneq ($(NDEBUG),0)
+	ALLFLAGS += -Werror -DNDEBUG -O2
+	NSANITIZE ?= 1
+else
+	ALLFLAGS += -g -Og
+	NSANITIZE ?= 0
+endif
+
 ifneq ($(NSANITIZE),0)
 	SANITIZE := -fno-sanitize=all
 else
 	SANITIZE := -fsanitize=address,undefined
-endif
-
-ALLFLAGS = -Wall
-ifneq ($(NDEBUG),0)
-	ALLFLAGS += -Werror -DNDEBUG -O2
-else
-	ALLFLAGS += -g -Og
 endif
 ALLFLAGS += $(SANITIZE) $(CFLAGS) $(LDFLAGS)
 ALLFLAGS := $(strip $(ALLFLAGS))
@@ -117,8 +119,9 @@ clean:
 # 	install t9o $(DESTDIR)$(PREFIX)/usr/bin/
 # 	install t9pass $(DESTDIR)$(PREFIX)/usr/bin/
 #
-# install-local: all
-# 	install -d $(DESTDIR)$(PREFIX)/usr/local/bin/
-# 	install t9 $(DESTDIR)$(PREFIX)/usr/local/bin/
-# 	install t9o $(DESTDIR)$(PREFIX)/usr/local/bin/
-# 	install t9pass $(DESTDIR)$(PREFIX)/usr/local/bin/
+.PHONY: install
+install: all
+	install -d $(PREFIX)$(DESTDIR)/bin/
+	install t9 $(PREFIX)$(DESTDIR)/bin/
+	install t9o $(PREFIX)$(DESTDIR)/bin/
+	install t9pass $(PREFIX)$(DESTDIR)/bin/
