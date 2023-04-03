@@ -13,7 +13,7 @@ sha256sums=('29507f42f973223e1395206121b5a9c3fe16c0d75063ee469487b94054b20c9d')
 
 build() {
 	cd "$pkgname-$pkgver"
-	NDEBUG=1 make
+	NDEBUG=1 NSANITIZE=1 make
 }
 
 package() {
